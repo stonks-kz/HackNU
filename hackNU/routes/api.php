@@ -22,6 +22,9 @@ Route::post('login', [\App\Http\Controllers\Api\Auth\LoginController::class, 'lo
 Route::post('registration', [\App\Http\Controllers\Api\Auth\LoginController::class, 'registration']);
 Route::post('profileChange', [\App\Http\Controllers\Api\Auth\LoginController::class, 'profileChange']);
 
+Route::get('tagList' , [\App\Http\Controllers\Api\ApiHandler::class, 'getTagList']);
+Route::post('addPost' , [\App\Http\Controllers\Api\ApiHandler::class, 'addPost']);
+
 
 
 

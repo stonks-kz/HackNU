@@ -33,7 +33,7 @@
                             <div class="form-group row">
                                 <label for="password_confirm" class="col-md-4 col-form-label text-md-right">Confirm password</label>
                                 <div class="col-md-6">
-                                    <input id="password_confirm" type="password" class="form-control" name="password_confirm" required>
+                                    <input v-on:keyup.enter="register" id="password_confirm" type="password" class="form-control" name="password_confirm" required>
                                 </div>
                             </div>
 
