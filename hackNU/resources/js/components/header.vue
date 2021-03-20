@@ -9,7 +9,7 @@
                 </ul>
                 <div v-if="user !== undefined && user !== '' ">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{user}}
+                        {{user.name}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <router-link class="dropdown-item" v-for="dropLink in dropDownLinks" :to="dropLink.href">
@@ -64,7 +64,7 @@ export default {
         }
     },
     mounted() {
-        let usa = localStorage.getItem("user")
+        let usa = JSON.parse(localStorage.getItem("user"))
         if(usa){
             this.user = usa
         }

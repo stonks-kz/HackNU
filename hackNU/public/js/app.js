@@ -1939,7 +1939,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var usa = localStorage.getItem("user");
+    var usa = JSON.parse(localStorage.getItem("user"));
 
     if (usa) {
       this.user = usa;
@@ -2044,9 +2044,8 @@ __webpack_require__.r(__webpack_exports__);
         "password": password
       };
       axios.post("http://127.0.0.1:8000/api/login", req).then(function (response) {
-        console.log(response);
-        var username = response.data[0].name;
-        localStorage.setItem("user", username);
+        var user = JSON.stringify(response.data[0]);
+        localStorage.setItem("user", user);
 
         _this.$nextTick(function () {
           location.reload();
@@ -2125,8 +2124,68 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "profile"
+  name: "profile",
+  data: function data() {
+    return {
+      user: {}
+    };
+  },
+  mounted: function mounted() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+  },
+  methods: {
+    saveChanges: function saveChanges() {
+      var req = {
+        "name": this.user.name,
+        "age": document.getElementById("age"),
+        "gender": document.getElementById("gender")
+      };
+      console.log(req);
+    }
+  }
 });
 
 /***/ }),
@@ -2150,8 +2209,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "registration"
+  name: "registration",
+  methods: {
+    register: function register() {
+      var _this = this;
+
+      var req = {
+        "email": document.getElementById("email").value,
+        "name": document.getElementById("username").value,
+        "password": document.getElementById("password").value,
+        "password_confirm": document.getElementById("password_confirm").value
+      };
+      axios.post("http://127.0.0.1:8000/api/registration", req).then(function (response) {
+        console.log(response);
+        var user = JSON.stringify(response.data[0]);
+        localStorage.setItem("user", user);
+
+        _this.$nextTick(function () {
+          location.reload();
+        });
+
+        _this.$router.push('/');
+      })["catch"](function (error) {
+        alert("Wrong data inserted");
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -38370,7 +38500,7 @@ var render = function() {
                     [
                       _vm._v(
                         "\n                    " +
-                          _vm._s(_vm.user) +
+                          _vm._s(_vm.user.name) +
                           "\n                "
                       )
                     ]
@@ -38682,16 +38812,119 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("User Profile")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("h3"),
+            _vm._v(" "),
+            _c("form", { attrs: { method: "POST", action: "" } }, [
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 col-form-label text-md-right",
+                    attrs: { for: "username" }
+                  },
+                  [_vm._v("Username")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "username",
+                      type: "text",
+                      name: "username",
+                      autofocus: ""
+                    },
+                    domProps: { value: _vm.user.name }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 col-form-label text-md-right",
+                    attrs: { for: "age" }
+                  },
+                  [_vm._v("Age")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { id: "age", type: "text", name: "age" },
+                    domProps: { value: _vm.user.age }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 col-form-label text-md-right",
+                    attrs: { for: "gender" }
+                  },
+                  [_vm._v("Gender")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "select",
+                    {
+                      staticClass: " form-control form-select",
+                      attrs: {
+                        id: "gender",
+                        "aria-label": "Default select example"
+                      },
+                      domProps: { value: _vm.user.gender }
+                    },
+                    [
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("Male")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [
+                        _vm._v("Female")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { selected: "", value: "3" } }, [
+                        _vm._v("Other")
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row mb-0" }, [
+                _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.saveChanges }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                    Save Changes\n                                "
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("profile")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38714,14 +38947,154 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Registration")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("form", { attrs: { method: "POST", action: "" } }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group row mb-0" }, [
+                _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.register }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                    Register\n                                "
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("\n        register\n    ")])])
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "email" }
+        },
+        [_vm._v("email")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "email",
+            type: "email",
+            name: "email",
+            required: "",
+            autofocus: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "username" }
+        },
+        [_vm._v("Username")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "username",
+            type: "text",
+            name: "Username",
+            required: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "password" }
+        },
+        [_vm._v("Password")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "password",
+            type: "password",
+            name: "password",
+            required: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "password_confirm" }
+        },
+        [_vm._v("Confirm password")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "password_confirm",
+            type: "password",
+            name: "password_confirm",
+            required: ""
+          }
+        })
+      ])
+    ])
   }
 ]
 render._withStripped = true

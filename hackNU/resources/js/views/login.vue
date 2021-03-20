@@ -49,10 +49,8 @@ export default {
 
             axios.post("http://127.0.0.1:8000/api/login", req)
                 .then(response => {
-                    console.log(response)
-                    let username = response.data[0].name
-
-                    localStorage.setItem("user", username)
+                    let user = JSON.stringify(response.data[0])
+                    localStorage.setItem("user", user)
                     this.$nextTick(() =>{
                         location.reload()
                     })

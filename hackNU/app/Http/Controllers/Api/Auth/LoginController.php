@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 class LoginController extends Controller
 {
@@ -23,5 +26,28 @@ class LoginController extends Controller
         }
         $user = User::where("email" , "=", $request["email"])->get();
         return $user;
+    }
+    public function registration(Request $request){
+        $rules = [
+            'name' => 'required|min:2',
+            'email' => 'required|email|unique',
+            'password' => 'required|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+            'password_confirm' => 'required|same:password'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if($validator){
+            User::insert([
+                "name" => $request->name,
+                "password" => bcrypt($request->password),
+                "email" => $request->email,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
+            $result = User::where("email", "=", $request["email"])->get();
+            return $result;
+        }
+        else{
+            return response()->json(["error"=> true]);
+        }
     }
 }
