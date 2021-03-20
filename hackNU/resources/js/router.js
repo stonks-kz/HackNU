@@ -4,7 +4,6 @@ import Vue from 'vue'
 Vue.use(vueRouter)
 
 import mainPage from "./views/mainPage";
-import posts from "./views/posts";
 import registration from "./views/registration";
 import login from "./views/login";
 import profile from "./views/profile";
@@ -13,10 +12,6 @@ const routes = [
     {
         path: "/",
         component: mainPage
-    },
-    {
-        path: "/posts",
-        component: posts
     },
     {
         path: "/registration",

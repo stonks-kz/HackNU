@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">User Profile</div>
                     <div class="card-body">
-                        <h3></h3>
+                        <h3>{{user.email}}</h3>
                         <form method="POST" action="">
                             <div class="form-group row">
                                 <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
@@ -25,9 +25,9 @@
                                 <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
                                 <div class="col-md-6">
                                     <select :value="user.gender" id="gender" class=" form-control form-select" aria-label="Default select example">
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                        <option selected value="3">Other</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option selected value="Other">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -60,11 +60,22 @@ export default {
     methods:{
         saveChanges() {
             let req = {
-                "name" : this.user.name,
-                "age" : document.getElementById("age"),
-                "gender" : document.getElementById("gender")
+                "email" : this.user.email,
+                "name" : document.getElementById('username').value,
+                "age" : document.getElementById("age").value,
+                "gender" : document.getElementById("gender").value,
             }
-            console.log(req)
+            axios.post("http://127.0.0.1:8000/api/profileChange", req)
+                .then(response => {
+                    let user = JSON.stringify(response.data[0])
+                    localStorage.setItem("user", user)
+                    this.$nextTick(() =>{
+                        location.reload()
+                    })
+                })
+                .catch(error => {
+                    alert("Wrong data inserted")
+                })
         }
     }
 }

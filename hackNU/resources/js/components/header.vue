@@ -44,10 +44,6 @@ export default {
                     title: "Main page",
                     href: "/"
                 },
-                {
-                    title: "Posts",
-                    href: "/posts"
-                }
             ],
             dropDownLinks: [
                 {

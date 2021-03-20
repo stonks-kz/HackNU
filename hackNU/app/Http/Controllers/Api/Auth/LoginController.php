@@ -50,4 +50,24 @@ class LoginController extends Controller
             return response()->json(["error"=> true]);
         }
     }
+
+    public function profileChange(Request $request) {
+        $rules = [
+            'name' => 'required|min:2',
+            'age' => 'numeric',
+            'gender' => 'max:4'
+        ];
+        $request["updated_at"] = Carbon::now()->format('Y-m-d H:i:s');
+        $validator = Validator::make($request->all(), $rules);
+
+        User::where("email", "=", $request->email)->update($request->all());
+
+        if($validator){
+            $result = User::where("email", "=", $request["email"])->get();
+            return $result;
+        }
+        else{
+            return response()->json(["error" => true]);
+        }
+    }
 }
