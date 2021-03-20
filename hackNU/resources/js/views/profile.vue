@@ -2,68 +2,94 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">User Profile</div>
+                <div class="card text-center">
+                    <div class="card-header">
+                        User Profile
+                    </div>
                     <div class="card-body">
-                        <h3>{{user.email}}</h3>
-
-                        <p>
-                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
-                        </p>
-                        <div class="row">
-                            <div class="col">
-                                <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                    <form method="POST" action="">
-                                        <div class="form-group row">
-                                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
-                                            <div class="col-md-6">
-                                                <input :value="user.name" id="username" type="text" class="form-control" name="username" autofocus>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="age" class="col-md-4 col-form-label text-md-right">Age</label>
-                                            <div class="col-md-6">
-                                                <input :value="user.age" id="age" type="text" class="form-control" name="age">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
-                                            <div class="col-md-6">
-                                                <select :value="user.gender" id="gender" class=" form-control form-select" aria-label="Default select example">
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option selected value="Other">Other</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-0">
-                                            <div class="col-md-8 offset-md-4">
-                                                <div class="btn btn-primary" v-on:click="saveChanges">
-                                                    Save Changes
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                        <h5 class="card-title">
+                            {{ user.email }}
+                        </h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-group-item-action" id="personal">
+                                <div v-on:click="show('personal','personalShow')">
+                                    Personal Information
                                 </div>
-                            </div>
-                        </div>
-                        <p>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-                        </p>
-                        <div class="row">
-                            <div class="col">
-                                <div class="collapse multi-collapse" id="multiCollapseExample2">
-                                    <div class="card card-body">
-                                        <h1>Вот сюда ебани посты</h1>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mt-md-3" v-if="personalShow">
+                                            <form method="POST" action="">
+                                                <div class="form-group row">
+                                                    <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                                    <div class="col-md-6">
+                                                        <input :value="user.name" id="username" type="text" class="form-control" name="username" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="age" class="col-md-4 col-form-label text-md-right">Age</label>
+                                                    <div class="col-md-6">
+                                                        <input :value="user.age" id="age" type="text" class="form-control" name="age">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
+                                                    <div class="col-md-6">
+                                                        <select :value="user.gender" id="gender" class=" form-control form-select" aria-label="Default select example">
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option selected value="Other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-0">
+                                                    <div class="col-md-8 offset-md-4">
+                                                        <div class="btn btn-danger" v-on:click="saveChanges">
+                                                            Save Changes
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-
-
+                            </li>
+                            <li class="list-group-item list-group-item-action" id="current">
+                                <div v-on:click="show('current','currentShow')">
+                                    Current Issues
+                                </div>
+                                <div class="card text-white bg-dark" style="margin: 5%;" v-if="currentShow">
+                                    <div class="card-header">Header</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dark card title</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action" id="resolved">
+                                <div v-on:click="show('resolved','resolvedShow')">
+                                    Resolved Issues
+                                </div>
+                                <div class="card text-white bg-success" style="margin: 5%;" v-if="resolvedShow">
+                                    <div class="card-header">Header</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dark card title</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-action" id="assisted">
+                                <div v-on:click="show('assisted','assistedShow')">
+                                    Assisted Issues
+                                </div>
+                                <div class="card text-white bg-secondary" style="margin: 5%;" v-if="assistedShow">
+                                    <div class="card-header">Header</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Dark card title</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -76,6 +102,10 @@ export default {
     name: "profile",
     data() {
         return {
+            personalShow : false,
+            resolvedShow : false,
+            assistedShow : false,
+            currentShow : false,
             user : {}
         }
     },
@@ -83,6 +113,24 @@ export default {
         this.user = JSON.parse(localStorage.getItem("user"))
     },
     methods:{
+        show(id, bool) {
+            if (bool === 'personalShow') {
+                this.personalShow = !this.personalShow
+            } else if (bool === 'currentShow') {
+                this.currentShow = !this.currentShow
+            } else if (bool === 'assistedShow') {
+                this.assistedShow = !this.assistedShow
+            } else if (bool === 'resolvedShow') {
+                this.resolvedShow = !this.resolvedShow
+            }
+
+            let classList = document.getElementById(id).classList
+            if (!classList.contains('active')) {
+                classList.add('active')
+            } else {
+                classList.remove('active')
+            }
+        },
         saveChanges() {
             let req = {
                 "email" : this.user.email,

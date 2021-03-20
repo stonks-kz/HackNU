@@ -2218,10 +2218,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "profile",
   data: function data() {
     return {
+      personalShow: false,
+      resolvedShow: false,
+      assistedShow: false,
+      currentShow: false,
       user: {}
     };
   },
@@ -2229,6 +2259,25 @@ __webpack_require__.r(__webpack_exports__);
     this.user = JSON.parse(localStorage.getItem("user"));
   },
   methods: {
+    show: function show(id, bool) {
+      if (bool === 'personalShow') {
+        this.personalShow = !this.personalShow;
+      } else if (bool === 'currentShow') {
+        this.currentShow = !this.currentShow;
+      } else if (bool === 'assistedShow') {
+        this.assistedShow = !this.assistedShow;
+      } else if (bool === 'resolvedShow') {
+        this.resolvedShow = !this.resolvedShow;
+      }
+
+      var classList = document.getElementById(id).classList;
+
+      if (!classList.contains('active')) {
+        classList.add('active');
+      } else {
+        classList.remove('active');
+      }
+    },
     saveChanges: function saveChanges() {
       var _this = this;
 
@@ -39315,135 +39364,311 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("User Profile")]),
+        _c("div", { staticClass: "card text-center" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("\n                    User Profile\n                ")
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("h3", [_vm._v(_vm._s(_vm.user.email))]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse multi-collapse",
-                    attrs: { id: "multiCollapseExample1" }
-                  },
-                  [
-                    _c("form", { attrs: { method: "POST", action: "" } }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-md-4 col-form-label text-md-right",
-                            attrs: { for: "username" }
-                          },
-                          [_vm._v("Username")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              id: "username",
-                              type: "text",
-                              name: "username",
-                              autofocus: ""
-                            },
-                            domProps: { value: _vm.user.name }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-md-4 col-form-label text-md-right",
-                            attrs: { for: "age" }
-                          },
-                          [_vm._v("Age")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: { id: "age", type: "text", name: "age" },
-                            domProps: { value: _vm.user.age }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "col-md-4 col-form-label text-md-right",
-                            attrs: { for: "gender" }
-                          },
-                          [_vm._v("Gender")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c(
-                            "select",
-                            {
-                              staticClass: " form-control form-select",
-                              attrs: {
-                                id: "gender",
-                                "aria-label": "Default select example"
-                              },
-                              domProps: { value: _vm.user.gender }
-                            },
-                            [
-                              _c("option", { attrs: { value: "Male" } }, [
-                                _vm._v("Male")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "Female" } }, [
-                                _vm._v("Female")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "option",
-                                { attrs: { selected: "", value: "Other" } },
-                                [_vm._v("Other")]
-                              )
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group row mb-0" }, [
-                        _c("div", { staticClass: "col-md-8 offset-md-4" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "btn btn-primary",
-                              on: { click: _vm.saveChanges }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                                Save Changes\n                                            "
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  ]
-                )
-              ])
+            _c("h5", { staticClass: "card-title" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.user.email) +
+                  "\n                    "
+              )
             ]),
             _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2)
+            _c("ul", { staticClass: "list-group list-group-flush" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  attrs: { id: "personal" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.show("personal", "personalShow")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Personal Information\n                            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _vm.personalShow
+                        ? _c("div", { staticClass: "mt-md-3" }, [
+                            _c(
+                              "form",
+                              { attrs: { method: "POST", action: "" } },
+                              [
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "col-md-4 col-form-label text-md-right",
+                                      attrs: { for: "username" }
+                                    },
+                                    [_vm._v("Username")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        id: "username",
+                                        type: "text",
+                                        name: "username",
+                                        autofocus: ""
+                                      },
+                                      domProps: { value: _vm.user.name }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "col-md-4 col-form-label text-md-right",
+                                      attrs: { for: "age" }
+                                    },
+                                    [_vm._v("Age")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        id: "age",
+                                        type: "text",
+                                        name: "age"
+                                      },
+                                      domProps: { value: _vm.user.age }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "col-md-4 col-form-label text-md-right",
+                                      attrs: { for: "gender" }
+                                    },
+                                    [_vm._v("Gender")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        staticClass:
+                                          " form-control form-select",
+                                        attrs: {
+                                          id: "gender",
+                                          "aria-label": "Default select example"
+                                        },
+                                        domProps: { value: _vm.user.gender }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Male" } },
+                                          [_vm._v("Male")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "Female" } },
+                                          [_vm._v("Female")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              selected: "",
+                                              value: "Other"
+                                            }
+                                          },
+                                          [_vm._v("Other")]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "form-group row mb-0" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-8 offset-md-4" },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "btn btn-danger",
+                                            on: { click: _vm.saveChanges }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                                        Save Changes\n                                                    "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  attrs: { id: "current" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.show("current", "currentShow")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Current Issues\n                            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.currentShow
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "card text-white bg-dark",
+                          staticStyle: { margin: "5%" }
+                        },
+                        [
+                          _c("div", { staticClass: "card-header" }, [
+                            _vm._v("Header")
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]
+                      )
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  attrs: { id: "resolved" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.show("resolved", "resolvedShow")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Resolved Issues\n                            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.resolvedShow
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "card text-white bg-success",
+                          staticStyle: { margin: "5%" }
+                        },
+                        [
+                          _c("div", { staticClass: "card-header" }, [
+                            _vm._v("Header")
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ]
+                      )
+                    : _vm._e()
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  attrs: { id: "assisted" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.show("assisted", "assistedShow")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                Assisted Issues\n                            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.assistedShow
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "card text-white bg-secondary",
+                          staticStyle: { margin: "5%" }
+                        },
+                        [
+                          _c("div", { staticClass: "card-header" }, [
+                            _vm._v("Header")
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(2)
+                        ]
+                      )
+                    : _vm._e()
+                ]
+              )
+            ])
           ])
         ])
       ])
@@ -39455,61 +39680,40 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            "data-bs-toggle": "collapse",
-            href: "#multiCollapseExample1",
-            role: "button",
-            "aria-expanded": "false",
-            "aria-controls": "multiCollapseExample1"
-          }
-        },
-        [_vm._v("Toggle first element")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Dark card title")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(
+          "Some quick example text to build on the card title and make up the bulk of the card's content."
+        )
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-bs-toggle": "collapse",
-            "data-bs-target": "#multiCollapseExample2",
-            "aria-expanded": "false",
-            "aria-controls": "multiCollapseExample2"
-          }
-        },
-        [_vm._v("Toggle second element")]
-      )
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Dark card title")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(
+          "Some quick example text to build on the card title and make up the bulk of the card's content."
+        )
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "div",
-          {
-            staticClass: "collapse multi-collapse",
-            attrs: { id: "multiCollapseExample2" }
-          },
-          [
-            _c("div", { staticClass: "card card-body" }, [
-              _c("h1", [_vm._v("Вот сюда ебани посты")])
-            ])
-          ]
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Dark card title")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(
+          "Some quick example text to build on the card title and make up the bulk of the card's content."
         )
       ])
     ])
