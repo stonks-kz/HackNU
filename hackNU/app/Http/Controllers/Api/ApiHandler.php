@@ -32,7 +32,7 @@ class ApiHandler extends Controller{
             'updated_at' => $creat
         ]);
 
-        $post_id = PostsModel::where("user_id", "=", $request->user_id,)
+        $post_id = PostsModel::where("user_id", "=", $request->user_id)
             ->where("title", "=", $request->title)
             ->where("created_at", "=", $creat)
             ->get("id");
@@ -44,5 +44,9 @@ class ApiHandler extends Controller{
             ]);
         }
         return response()->json(["error" => false]);
+    }
+
+    public function profileGetPosts(){
+        return PostsModel::all();
     }
 }

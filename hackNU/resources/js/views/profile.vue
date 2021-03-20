@@ -57,11 +57,14 @@
                                 <div v-on:click="show('current','currentShow')">
                                     Current Issues
                                 </div>
-                                <div class="card text-white bg-dark" style="margin: 5%;" v-if="currentShow">
-                                    <div class="card-header">Header</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Dark card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div  v-if="currentShow" v-for="elem in data">
+                                    <div class="card text-white bg-dark" style="margin: 5%;" v-if="elem.status === 0 && elem.user_id === user.id">
+                                        <router-link :to="{ name: 'showPost', params: {id: elem.id } }">
+                                            <div class="card-header">{{ elem.title }}</div>
+                                        </router-link>
+                                        <div class="card-body">
+                                            <p class="card-text">{{ elem.text }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -69,26 +72,29 @@
                                 <div v-on:click="show('resolved','resolvedShow')">
                                     Resolved Issues
                                 </div>
-                                <div class="card text-white bg-success" style="margin: 5%;" v-if="resolvedShow">
-                                    <div class="card-header">Header</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Dark card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div v-if="resolvedShow" v-for="elem in data">
+                                    <div class="card text-white bg-success" style="margin: 5%;" v-if="elem.status === 1 && elem.user_id === user.id">
+                                        <router-link :to="{ name: 'showPost', params: {id: elem.id } }">
+                                            <div class="card-header">{{ elem.title }}</div>
+                                        </router-link>
+                                        <div class="card-body">
+                                            <p class="card-text">{{ elem.text }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item list-group-item-action" id="assisted">
-                                <div v-on:click="show('assisted','assistedShow')">
-                                    Assisted Issues
-                                </div>
-                                <div class="card text-white bg-secondary" style="margin: 5%;" v-if="assistedShow">
-                                    <div class="card-header">Header</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Dark card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </li>
+<!--                            <li class="list-group-item list-group-item-action" id="assisted">-->
+<!--                                <div v-on:click="show('assisted','assistedShow')">-->
+<!--                                    Assisted Issues-->
+<!--                                </div>-->
+<!--                                <div class="card text-white bg-secondary" style="margin: 5%;" v-if="assistedShow">-->
+<!--                                    <div class="card-header">Header</div>-->
+<!--                                    <div class="card-body">-->
+<!--                                        <h5 class="card-title">Dark card title</h5>-->
+<!--                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -106,7 +112,8 @@ export default {
             resolvedShow : false,
             assistedShow : false,
             currentShow : false,
-            user : {}
+            user : {},
+            data : null,
         }
     },
     mounted() {
@@ -114,14 +121,18 @@ export default {
     },
     methods:{
         show(id, bool) {
+            let status = null;
+
             if (bool === 'personalShow') {
                 this.personalShow = !this.personalShow
             } else if (bool === 'currentShow') {
                 this.currentShow = !this.currentShow
-            } else if (bool === 'assistedShow') {
-                this.assistedShow = !this.assistedShow
+                status = 0
+            // } else if (bool === 'assistedShow') {
+            //     this.assistedShow = !this.assistedShow
             } else if (bool === 'resolvedShow') {
                 this.resolvedShow = !this.resolvedShow
+                status = 1
             }
 
             let classList = document.getElementById(id).classList
@@ -129,6 +140,16 @@ export default {
                 classList.add('active')
             } else {
                 classList.remove('active')
+            }
+
+            if (status !== null) {
+                axios.get("http://127.0.0.1:8000/api/profileGetPosts")
+                    .then(response => {
+                        this.data = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             }
         },
         saveChanges() {
@@ -149,7 +170,8 @@ export default {
                 .catch(error => {
                     alert("Wrong data inserted")
                 })
-        }
+        },
+
     }
 }
 </script>
