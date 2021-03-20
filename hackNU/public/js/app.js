@@ -38367,7 +38367,7 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "collapse navbar-collapse justify-content-between",
+            staticClass: "w-100 justify-content-between d-flex",
             attrs: { id: "navbarNav" }
           },
           [

@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <div class="w-100 justify-content-between d-flex" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item" v-for="link in links">
                         <router-link class="nav-link" :to="link.href">{{link.title}}</router-link>
