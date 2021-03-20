@@ -6,39 +6,64 @@
                     <div class="card-header">User Profile</div>
                     <div class="card-body">
                         <h3>{{user.email}}</h3>
-                        <form method="POST" action="">
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
-                                <div class="col-md-6">
-                                    <input :value="user.name" id="username" type="text" class="form-control" name="username" autofocus>
-                                </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label for="age" class="col-md-4 col-form-label text-md-right">Age</label>
-                                <div class="col-md-6">
-                                    <input :value="user.age" id="age" type="text" class="form-control" name="age">
-                                </div>
-                            </div>
+                        <p>
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+                        </p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                    <form method="POST" action="">
+                                        <div class="form-group row">
+                                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                            <div class="col-md-6">
+                                                <input :value="user.name" id="username" type="text" class="form-control" name="username" autofocus>
+                                            </div>
+                                        </div>
 
-                            <div class="form-group row">
-                                <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
-                                <div class="col-md-6">
-                                    <select :value="user.gender" id="gender" class=" form-control form-select" aria-label="Default select example">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option selected value="Other">Other</option>
-                                    </select>
+                                        <div class="form-group row">
+                                            <label for="age" class="col-md-4 col-form-label text-md-right">Age</label>
+                                            <div class="col-md-6">
+                                                <input :value="user.age" id="age" type="text" class="form-control" name="age">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
+                                            <div class="col-md-6">
+                                                <select :value="user.gender" id="gender" class=" form-control form-select" aria-label="Default select example">
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option selected value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-0">
+                                            <div class="col-md-8 offset-md-4">
+                                                <div class="btn btn-primary" v-on:click="saveChanges">
+                                                    Save Changes
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <div class="btn btn-primary" v-on:click="saveChanges">
-                                        Save Changes
+                        </div>
+                        <p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+                        </p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                    <div class="card card-body">
+                                        <h1>Вот сюда ебани посты</h1>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>

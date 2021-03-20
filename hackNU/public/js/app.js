@@ -1974,8 +1974,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "addPost"
+  name: "addPost",
+  data: function data() {
+    return {
+      info: ""
+    };
+  }
 });
 
 /***/ }),
@@ -2092,6 +2124,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38516,7 +38573,84 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("\n        add post\n    ")])])
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Create new post")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("h3"),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "input-group-text",
+                    attrs: { id: "basic-addon1" }
+                  },
+                  [_vm._v("Title")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Username",
+                    "aria-label": "Username",
+                    "aria-describedby": "basic-addon1"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary",
+                    attrs: { type: "button" }
+                  },
+                  [_vm._v("Choose categories")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "input-group-text",
+                    attrs: { id: "basic-addon3" }
+                  },
+                  [_vm._v("https://example.com/users/")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "basic-url",
+                    "aria-describedby": "basic-addon3"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("span", { staticClass: "input-group-text" }, [
+                  _vm._v("With textarea")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  staticClass: "form-control",
+                  attrs: { "aria-label": "With textarea" }
+                })
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -38698,114 +38832,200 @@ var render = function() {
           _c("div", { staticClass: "card-body" }, [
             _c("h3", [_vm._v(_vm._s(_vm.user.email))]),
             _vm._v(" "),
-            _c("form", { attrs: { method: "POST", action: "" } }, [
-              _c("div", { staticClass: "form-group row" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
                 _c(
-                  "label",
+                  "div",
                   {
-                    staticClass: "col-md-4 col-form-label text-md-right",
-                    attrs: { for: "username" }
+                    staticClass: "collapse multi-collapse",
+                    attrs: { id: "multiCollapseExample1" }
                   },
-                  [_vm._v("Username")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "username",
-                      type: "text",
-                      name: "username",
-                      autofocus: ""
-                    },
-                    domProps: { value: _vm.user.name }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-md-4 col-form-label text-md-right",
-                    attrs: { for: "age" }
-                  },
-                  [_vm._v("Age")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { id: "age", type: "text", name: "age" },
-                    domProps: { value: _vm.user.age }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-md-4 col-form-label text-md-right",
-                    attrs: { for: "gender" }
-                  },
-                  [_vm._v("Gender")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "select",
-                    {
-                      staticClass: " form-control form-select",
-                      attrs: {
-                        id: "gender",
-                        "aria-label": "Default select example"
-                      },
-                      domProps: { value: _vm.user.gender }
-                    },
-                    [
-                      _c("option", { attrs: { value: "Male" } }, [
-                        _vm._v("Male")
+                  [
+                    _c("form", { attrs: { method: "POST", action: "" } }, [
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-md-4 col-form-label text-md-right",
+                            attrs: { for: "username" }
+                          },
+                          [_vm._v("Username")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "username",
+                              type: "text",
+                              name: "username",
+                              autofocus: ""
+                            },
+                            domProps: { value: _vm.user.name }
+                          })
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Female" } }, [
-                        _vm._v("Female")
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-md-4 col-form-label text-md-right",
+                            attrs: { for: "age" }
+                          },
+                          [_vm._v("Age")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { id: "age", type: "text", name: "age" },
+                            domProps: { value: _vm.user.age }
+                          })
+                        ])
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "option",
-                        { attrs: { selected: "", value: "Other" } },
-                        [_vm._v("Other")]
-                      )
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group row mb-0" }, [
-                _c("div", { staticClass: "col-md-8 offset-md-4" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "btn btn-primary",
-                      on: { click: _vm.saveChanges }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                    Save Changes\n                                "
-                      )
-                    ]
-                  )
-                ])
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "col-md-4 col-form-label text-md-right",
+                            attrs: { for: "gender" }
+                          },
+                          [_vm._v("Gender")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "select",
+                            {
+                              staticClass: " form-control form-select",
+                              attrs: {
+                                id: "gender",
+                                "aria-label": "Default select example"
+                              },
+                              domProps: { value: _vm.user.gender }
+                            },
+                            [
+                              _c("option", { attrs: { value: "Male" } }, [
+                                _vm._v("Male")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Female" } }, [
+                                _vm._v("Female")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                { attrs: { selected: "", value: "Other" } },
+                                [_vm._v("Other")]
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row mb-0" }, [
+                        _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: { click: _vm.saveChanges }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                                Save Changes\n                                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                )
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
           ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: {
+            "data-bs-toggle": "collapse",
+            href: "#multiCollapseExample1",
+            role: "button",
+            "aria-expanded": "false",
+            "aria-controls": "multiCollapseExample1"
+          }
+        },
+        [_vm._v("Toggle first element")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: {
+            type: "button",
+            "data-bs-toggle": "collapse",
+            "data-bs-target": "#multiCollapseExample2",
+            "aria-expanded": "false",
+            "aria-controls": "multiCollapseExample2"
+          }
+        },
+        [_vm._v("Toggle second element")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          {
+            staticClass: "collapse multi-collapse",
+            attrs: { id: "multiCollapseExample2" }
+          },
+          [
+            _c("div", { staticClass: "card card-body" }, [
+              _c("h1", [_vm._v("Вот сюда ебани посты")])
+            ])
+          ]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
