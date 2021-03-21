@@ -39,3 +39,7 @@ Route::get('getAllPosts' , [\App\Http\Controllers\Api\ApiHandler::class, 'getAll
 Route::post('addLikeC' , [\App\Http\Controllers\Api\ApiHandler::class, 'addLikeC']);
 
 Route::post('addDLikeC' , [\App\Http\Controllers\Api\ApiHandler::class, 'addDLikeC']);
+
+Route::post('likePost' , [\App\Http\Controllers\Api\ApiHandler::class, 'likePost']);
+
+Route::post('dislikePost' , [\App\Http\Controllers\Api\ApiHandler::class, 'dislikePost']);

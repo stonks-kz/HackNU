@@ -2665,6 +2665,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     saveComment: function saveComment() {
+      var _this2 = this;
+
       var req = {
         "user_id": JSON.parse(localStorage.getItem("user")).id,
         "text": document.getElementById('saveComment').value,
@@ -2672,28 +2674,70 @@ __webpack_require__.r(__webpack_exports__);
         "like": 0,
         "dislike": 0
       };
-      axios.post('http://127.0.0.1:8000/api/setComment/', req).then(function (response) {})["catch"](function (error) {
-        alert("error");
-      });
-    },
-    likePost: function likePost() {},
-    dlikePost: function dlikePost() {},
-    likeComment: function likeComment(id) {
-      var req = {
-        "id": id
-      };
-      axios.post('http://127.0.0.1:8000/api/addLikeC/', req).then(function (response) {
-        console.log(response);
+      axios.post('http://127.0.0.1:8000/api/setComment/', req).then(function (response) {
+        _this2.$nextTick(function () {
+          location.reload();
+        });
       })["catch"](function (error) {
         alert("error");
       });
     },
-    dlikeComment: function dlikeComment(id) {
+    likePost: function likePost(id, count) {
+      var _this3 = this;
+
       var req = {
-        "id": id
+        "id": id,
+        'count': count + 1
+      };
+      axios.post('http://127.0.0.1:8000/api/likePost/', req).then(function (response) {
+        _this3.$nextTick(function () {
+          location.reload();
+        });
+      })["catch"](function (error) {
+        alert("error");
+      });
+    },
+    dlikePost: function dlikePost(id, count) {
+      var _this4 = this;
+
+      var req = {
+        "id": id,
+        'count': count + 1
+      };
+      axios.post('http://127.0.0.1:8000/api/dislikePost/', req).then(function (response) {
+        _this4.$nextTick(function () {
+          location.reload();
+        });
+      })["catch"](function (error) {
+        alert("error");
+      });
+    },
+    likeComment: function likeComment(id, count) {
+      var _this5 = this;
+
+      var req = {
+        "id": id,
+        'count': count + 1
+      };
+      axios.post('http://127.0.0.1:8000/api/addLikeC/', req).then(function (response) {
+        _this5.$nextTick(function () {
+          location.reload();
+        });
+      })["catch"](function (error) {
+        alert("error");
+      });
+    },
+    dlikeComment: function dlikeComment(id, count) {
+      var _this6 = this;
+
+      var req = {
+        "id": id,
+        'count': count + 1
       };
       axios.post('http://127.0.0.1:8000/api/addDLikeC/', req).then(function (response) {
-        console.log(response);
+        _this6.$nextTick(function () {
+          location.reload();
+        });
       })["catch"](function (error) {
         alert("error");
       });
@@ -7363,7 +7407,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.likeDislike[data-v-23b03812]{\n    text-align: right;\n    margin-bottom: 0;\n}\nsvg[data-v-23b03812]{\n    width: 18px;\n    height: 18px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.likeDislike[data-v-23b03812]{\r\n    text-align: right;\r\n    margin-bottom: 0;\n}\nsvg[data-v-23b03812]{\r\n    width: 18px;\r\n    height: 18px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41128,7 +41172,10 @@ var render = function() {
                     },
                     on: {
                       click: function($event) {
-                        return _vm.likePost(_vm.post_data.id)
+                        return _vm.likePost(
+                          _vm.post_data.id,
+                          _vm.post_data.like
+                        )
                       }
                     }
                   },
@@ -41159,7 +41206,10 @@ var render = function() {
                     },
                     on: {
                       click: function($event) {
-                        return _vm.dlikePost(_vm.post_data.id)
+                        return _vm.dlikePost(
+                          _vm.post_data.id,
+                          _vm.post_data.dislike
+                        )
                       }
                     }
                   },
@@ -41254,7 +41304,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              return _vm.likeComment(com.id)
+                              return _vm.likeComment(com.id, com.like)
                             }
                           }
                         },
@@ -41285,7 +41335,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              return _vm.dlikeComment(com.id)
+                              return _vm.dlikeComment(com.id, com.dislike)
                             }
                           }
                         },

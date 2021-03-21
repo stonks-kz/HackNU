@@ -90,25 +90,28 @@ class ApiHandler extends Controller{
         return "success";
     }
     public function getComments($id){
-        $comments = CommentsModel::where("post_id", "=", $id)->get()->all();
-
+        $comments = CommentsModel::where("post_id", "=", $id)
+            ->orderBy('like', 'DESC')
+            ->orderBy('created_at', 'DESC')
+            ->orderBy('dislike', 'ASC')->get()->all();
         return $comments;
     }
 
     public function addLikeC(Request $request){
-        $com = CommentsModel::find("id", "=", $request->id);
-        $com->like = $com->like++;
-        $com->save();
-
+        CommentsModel::where("id", "=", $request->id)->update(['like' => $request->count]);
         return "success";
     }
     public function addDLikeC(Request $request){
-        $com = CommentsModel::find("id", "=", $request->id);
-        $com->dislike = $com->dislike++;
-        $com->save();
-
+        CommentsModel::where("id", "=", $request->id)->update(['dislike' => $request->count]);
         return "success";
-
+    }
+    public function likePost(Request $request){
+        PostsModel::where("id", "=", $request->id)->update(['like' => $request->count]);
+        return "success";
+    }
+    public function dislikePost(Request $request){
+        PostsModel::where("id", "=", $request->id)->update(['dislike' => $request->count]);
+        return "success";
     }
 
 }
