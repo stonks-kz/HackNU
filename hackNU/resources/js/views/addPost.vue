@@ -84,10 +84,9 @@ name: "addPost",
                 'like' : 0,
                 'dislike' : 0,
             }
-            console.log(req)
             axios.post("http://127.0.0.1:8000/api/addPost", req)
                 .then(response => {
-                    console.log(response)
+                    this.$router.push('/');
                 })
                 .catch(error => {
                     alert("Error")

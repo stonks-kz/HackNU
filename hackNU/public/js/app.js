@@ -2001,6 +2001,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addPost: function addPost() {
+      var _this2 = this;
+
       var tags = document.getElementsByClassName("check-with-label");
       var cats = [];
       var i = 0;
@@ -2021,9 +2023,8 @@ __webpack_require__.r(__webpack_exports__);
         'like': 0,
         'dislike': 0
       };
-      console.log(req);
       axios.post("http://127.0.0.1:8000/api/addPost", req).then(function (response) {
-        console.log(response);
+        _this2.$router.push('/');
       })["catch"](function (error) {
         alert("Error");
       });
