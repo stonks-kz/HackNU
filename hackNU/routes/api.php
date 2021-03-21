@@ -25,6 +25,7 @@ Route::post('profileChange', [\App\Http\Controllers\Api\Auth\LoginController::cl
 Route::get('tagList' , [\App\Http\Controllers\Api\ApiHandler::class, 'getTagList']);
 Route::post('addPost' , [\App\Http\Controllers\Api\ApiHandler::class, 'addPost']);
 Route::get('profileGetPosts' , [\App\Http\Controllers\Api\ApiHandler::class, 'profileGetPosts']);
+Route::get('getAllPosts' , [\App\Http\Controllers\Api\ApiHandler::class, 'getAllPosts']);
 
 
 

@@ -49,4 +49,8 @@ class ApiHandler extends Controller{
     public function profileGetPosts(){
         return PostsModel::all();
     }
+
+    public function getAllPosts(){
+        return PostsModel::limit(48)->orderBy('created_at', 'DESC')->get();
+    }
 }

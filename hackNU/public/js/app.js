@@ -2128,8 +2128,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "mainPage"
+  name: "mainPage",
+  data: function data() {
+    return {
+      posts: {},
+      user: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.user = JSON.parse(localStorage.getItem("user"));
+    axios.get("http://127.0.0.1:8000/api/getAllPosts").then(function (response) {
+      console.log(response);
+      _this.posts = response.data;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
 });
 
 /***/ }),
@@ -39461,16 +39496,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "jumbotron text-center" }, [
+      _c("h1", [_vm._v("Latest Posts")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "album py-5" }, [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.posts, function(elem) {
+              return _c("div", { staticClass: "col-sm-12 col-md-6 col-lg-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "card text-center",
+                    staticStyle: { margin: "4% 0" }
+                  },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: { name: "showPost", params: { id: elem.id } }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "card-header" }, [
+                          _vm._v(_vm._s(elem.title))
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(_vm._s(elem.text))
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("MAIN PAGE")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
