@@ -9,6 +9,7 @@ import login from "./views/login";
 import profile from "./views/profile";
 import addPost from "./views/addPost";
 import showPost from "./views/showPost";
+import getUser from "./views/getUser";
 const routes = [
     {
         path: "/",
@@ -41,6 +42,12 @@ const routes = [
         component: showPost,
         props: true
     },
+    {
+        path: "/getUser/:id",
+        name: "getUser",
+        component: getUser,
+        props: true
+    }
 ]
 
 export default new vueRouter({

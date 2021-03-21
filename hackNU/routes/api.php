@@ -25,8 +25,17 @@ Route::post('profileChange', [\App\Http\Controllers\Api\Auth\LoginController::cl
 Route::get('tagList' , [\App\Http\Controllers\Api\ApiHandler::class, 'getTagList']);
 Route::post('addPost' , [\App\Http\Controllers\Api\ApiHandler::class, 'addPost']);
 Route::get('profileGetPosts' , [\App\Http\Controllers\Api\ApiHandler::class, 'profileGetPosts']);
+
+Route::get('getPostById/{id}' , [\App\Http\Controllers\Api\ApiHandler::class, 'getPostById']);
+
+Route::get('getUserData/{id}' , [\App\Http\Controllers\Api\ApiHandler::class, 'getUserData']);
+
+Route::post('setComment' , [\App\Http\Controllers\Api\ApiHandler::class, 'setComment']);
+
+Route::get('getComments/{id}' , [\App\Http\Controllers\Api\ApiHandler::class, 'getComments']);
+
 Route::get('getAllPosts' , [\App\Http\Controllers\Api\ApiHandler::class, 'getAllPosts']);
 
+Route::post('addLikeC' , [\App\Http\Controllers\Api\ApiHandler::class, 'addLikeC']);
 
-
-
+Route::post('addDLikeC' , [\App\Http\Controllers\Api\ApiHandler::class, 'addDLikeC']);

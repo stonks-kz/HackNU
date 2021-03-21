@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\ApiHandlerModel;
+use App\Models\CommentsModel;
 use App\Models\PostsModel;
 use App\Models\PostTagsModel;
 use App\Models\TagsModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -53,4 +55,60 @@ class ApiHandler extends Controller{
     public function getAllPosts(){
         return PostsModel::limit(48)->orderBy('created_at', 'DESC')->get();
     }
+
+    public function getPostById($id){
+        $post = PostsModel::get()->where("id", "=", $id)->all();
+        foreach ($post as $key => $item){
+            $postData = $item;
+        }
+
+        $user_id = $postData->user_id;
+        $user = User::where("id", "=", $user_id)->get();
+        $user_name = $user[0]->name;
+
+        return array(["post" => $postData, "user_name" => $user_name, "user_id" => $user_id]) ;
+    }
+
+    public function getUserData($id) {
+        $user = User::where("id", "=", $id)->get();
+        $posts = PostsModel::where("user_id", "=", $id)->get()->all();
+        return array($posts, $user[0]->name);
+    }
+
+    public function setComment(Request $req){
+        $creat = Carbon::now()->format('Y-m-d H:i:s');
+
+        CommentsModel::insert([
+            'user_id' => $req->user_id,
+            'post_id' => $req->post_id,
+            'text' => $req->text,
+            'like' => 0,
+            'dislike' => 0,
+            'created_at' => $creat,
+            'updated_at' => $creat
+        ]);
+        return "success";
+    }
+    public function getComments($id){
+        $comments = CommentsModel::where("post_id", "=", $id)->get()->all();
+
+        return $comments;
+    }
+
+    public function addLikeC(Request $request){
+        $com = CommentsModel::find("id", "=", $request->id);
+        $com->like = $com->like++;
+        $com->save();
+
+        return "success";
+    }
+    public function addDLikeC(Request $request){
+        $com = CommentsModel::find("id", "=", $request->id);
+        $com->dislike = $com->dislike++;
+        $com->save();
+
+        return "success";
+
+    }
+
 }
